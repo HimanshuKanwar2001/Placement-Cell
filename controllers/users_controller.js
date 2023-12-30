@@ -17,3 +17,14 @@ module.exports.signIn = function (req, res) {
     title: "Placement Cell | Sign In",
   });
 };
+
+
+//get the sign up data
+module.exports.create=function(req,res){
+    //TODO later
+}
+
+//sing in and create a session for the user
+module.exports.createSession=function(req,res){
+    //TODO later
+}
