@@ -1,8 +1,8 @@
 const express=require('express');
 const router=express.Router();
-const stdDetailPage=require('../controllers/studentDetails');
+const homeController=require('../controllers/home_controller');
 
-router.get("/", stdDetailPage.studentDetailsPage);
+router.get("/", homeController.home);
 
 console.log("Router loaded");
 
