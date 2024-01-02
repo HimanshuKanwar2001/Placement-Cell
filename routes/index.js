@@ -6,6 +6,8 @@ router.get("/", homeController.home);
 
 //users routes here
 router.use('/users',require('./users'));
+router.use('/student',require('./student'));
+router.use('/interview',require('./interview'));
 
 
 
