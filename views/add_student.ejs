@@ -1,46 +1,18 @@
 <section id="add_student_details">
-    <h4 class="add-student-heading">Add Student</h4>
+  <h4 class="add-student-heading">Add Student</h4>
 
-    <form class="add-student" action="/student/create" method="post">
-
-        <div class="add-student-class name">
-            <input type="text" class="form-control" placeholder="Enter Student Name" id="name" name="name" required />
-        </div>
-        <div class="add-student-class email">
-            <input type="text" class="form-control" placeholder="Enter Student Email" id="email" name="email" required />
-        </div>
-        
-        <div class="add-student-class college">
-            <input type="text" class="form-control" placeholder="Enter Student College" id="college" name="college" required />
-        </div>
-
-        <div class="add-student-class placement-status">
-            <label class="add-student-class-label" for="form-select"></label>
-            <select name="placement_status" id="placement-status-data" class="form-select" required>
-                <option selected>Not Placed</option>
-                <option >Placed</option>
-            </select>
-        </div>
-        
-        <div class="add-student-class batch">
-            <input type="text" class="form-control" placeholder="Enter Batch" id="batch" name="batch" required />
-        </div>
-
-        <div class="add-student-class dsa-score">
-            <input type="text" class="form-control" placeholder="DSA Score" id="dsa-score" name="dsa_score" required />
-        </div>
-
-        <div class="add-student-class webdev-score">
-            <input type="text" class="form-control" placeholder="WEB Dev Score" id="webdev-score" name="webdev_score" required />
-        </div>
-
-         <div class="add-student-class react-score">
-      
-      <input type="number" class="form-control" id="react-score" name="react_score" placeholder="React Score" required/>
-        </div>
-        <div class="apply">
-      <input type="submit" value="Add Student" ></input>
-    </div>
-
-    </form>
+  <form class="add-student" action="/student/create" method="post">
+    <input type="email" name="email" placeholder="Enter Email" required />
+    <input type="text" name="batch" placeholder="Enter Batch" required />
+    <input type="text" name="name" placeholder="Enter Name" required />
+    <input type="text" name="college" placeholder="Enter College" required />
+    <select name="status" id="status">
+      <option selected>Not Placed</option>
+      <option>Placed</option>
+    </select>
+    <input type="text" name="dsa_score" placeholder="Enter Dsa  Score" required />
+    <input type="text" name="webdev_score" placeholder="Enter WebDev Score" required />
+    <input type="text" name="react_score" placeholder="Enter React Score" required />
+    <input type="submit" value="Add Student">
+  </form>
 </section>

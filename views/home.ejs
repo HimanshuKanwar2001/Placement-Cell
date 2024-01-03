@@ -1,69 +1,91 @@
+<link rel="stylesheet" href="/css/home.css" />
 
-    <form action="" method="post">
-      <input
-        type="text"
-        name="batch"
-        placeholder="Enter Your Batch
-        "
-        required
-      />
-      <h3>Student Details</h3>
-      <input
-        type="text"
-        name="college"
-        placeholder="Enter Your College name
-        "
-        required
-      />
-      <input
-        type="text"
-        name="status"
-        placeholder="Your status
-        "
-        required
-      />
-      <h3>Course Scores</h3>
-      <input
-        type="text"
-        name="dsa_final_score"
-        placeholder="Your Scores
-        "
-        required
-      />
-      <input
-        type="text"
-        name="webd_final_score"
-        placeholder="Your Scores
-        "
-        required
-      />
-      <input
-        type="text"
-        name="react_final_score"
-        placeholder="Your Scores
-        "
-        required
-      />
-      <h3>Interviews</h3>
-      <input
-        type="text"
-        name="company_name"
-        placeholder="Your Scores
-        "
-        required
-      />
-      <input
-        type="datetime"
-        name="date"
-        placeholder="Your Scores
-        "
-        required
-      />
+<h1>Placement Cell / <%= title %></h1>
 
-      <h3>Result</h3>
-      <input
-        type="submit"
-        value="Submit"
-      />
-    </form>
+<div id="student-list-container">
+  <% for(student of allStudents) { %>
+  <div class="student-data-card">
+    <div class="student-basic-info">
+      <div class="student-heading">
+        <p>Name</p>
+        <p>Batch</p>
+        <p>College</p>
+        <p>Status</p>
+        <p>DSA Score</p>
+        <p>WebDev Score</p>
+        <p>React Score</p>
+      </div>
+      <div class="student-details">
+        <p><%= student.name %></p>
+        <p><%= student.batch %></p>
+        <p><%= student.college %></p>
+        <p><%= student.status %></p>
+        <p><%= student.dsa_score %></p>
+        <p><%= student.webdev_score %></p>
+        <p><%= student.react_score %></p>
+      </div>
+    </div>
+    <div class="interview-details">
+      <h3>Interview Info</h3>
+      <div class="Interview-data">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Company</th>
+              <th scope="col">Date</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(allStudents.interviews){ %> <% for(interview of
+            allStudents.interviews){ %>
+            <tr>
+              <td><%= interview.company %></td>
+              <td><%= interview.date %></td>
+              <td><%= interview.result %></td>
+            </tr>
+            <% } %> <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <!-- <table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">Batch</th>
+      <th scope="col">Name</th>
+      <th scope="col">College</th>
+      <th scope="col">Student Status</th>
+      <th scope="col">DSA Score</th>
+      <th scope="col">WebDev Score</th>
+      <th scope="col">React Score</th>
+      <th scope="col">Company</th>
+      <th scope="col">Date</th>
+      <th scope="col">Result</th>
     
+    </tr>
+  </thead>
+  <tbody>
+    <% for(student of allStudents) { %>
+    <tr>
+      <th scope="row"><%= student._id %></th>
+      <td><%= student.batch %></td>
+      <td><%= student.name %></td>
+      <td><%= student.college %></td>
+      <td><%= student.status %></td>
+      <td><%= student.dsa_score %></td>
+      <td><%= student.webdev_score %></td>
+      <td><%= student.react_score %></td>
+      <td><%= student.interviews %></td>
+      <td><%= student.react_score %></td>
+      <td><%= student.react_score %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table> -->
+</div>

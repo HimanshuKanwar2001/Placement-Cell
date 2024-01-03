@@ -1,0 +1,38 @@
+
+
+table{
+    width: 80%;
+    text-align: center;
+    border: 1px solid white;
+    border-collapse: collapse;
+    thead{
+        tr{
+            
+            th{
+                border: 1px solid white;
+                border-collapse: collapse;
+                background-color: #96D4D4;
+            }
+            td{
+                
+                border: 1px solid white;
+                border-collapse: collapse;
+                background-color: #96D4D4;
+            }
+        }
+    }
+}
+
+#student-list-container{
+    .student-data-card{
+        width: 500px;
+        
+        .student-basic-info{
+            display: flex;
+            justify-content:space-between;
+        }
+    }
+}
+table{
+    width: 100%;
+}
