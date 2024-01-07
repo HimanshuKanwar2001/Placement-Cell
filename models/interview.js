@@ -1,33 +1,43 @@
-const mongoose=require('mongoose');
+const mongoose = require("mongoose");
 
 const interviewSchema = new mongoose.Schema(
   {
-    company: {
+    studentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Student",
+    },
+    studentBatch:{
+      type:String,
+      required:true,
+    },
+    studentName: {
       type: String,
       required: true,
     },
-    date: {
+    companyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Company",
+    },
+    companyName: {
       type: String,
       required: true,
     },
-    students: [
-      {
-        student: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Student",
-        },
-        result: {
-          type: String,
-          enum: ["PASS", "FAIL", "Didn't Attempt", "On Hold"],
-        },
-      },
-    ],
+    interviewDate: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["PASS", "FAIL", "On Hold", "Didn't Attempt", "To Be Decided"],
+      default: "To Be Decided",
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Interview=mongoose.model("Interview",interviewSchema);
+const Interview = mongoose.model("Interview", interviewSchema);
 
-module.exports=Interview;
+module.exports = Interview;
