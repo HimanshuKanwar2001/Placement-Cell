@@ -4,6 +4,8 @@ const Company = require("../models/company");
 
 module.exports.companyPage = async function (req, res) {
   try {
+    if(req.isAuthenticated()){
+    
     const student = await Student.find({});
     const interview = await Interview.find({});
     const company = await Company.find({});
@@ -14,6 +16,9 @@ module.exports.companyPage = async function (req, res) {
       // all_interview: interview,
       all_company: company,
     });
+  }
+  return res.redirect("/users/sign-in");
+
   } catch (err) {
     console.error("Error:", err);
     return res.status(500).send("Internal Server Error");

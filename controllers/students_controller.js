@@ -5,13 +5,13 @@ const Result = require("../models/company");
 //render add student page
 module.exports.addStudent = async function (req, res) {
   try {
-    //   if (req.isAuthenticated()) {
+      if (req.isAuthenticated()) {
     return res.render("add_student", {
       title: "Add Student",
     });
-    //   }
+      }
 
-    return res.redirect("/");
+    return res.redirect("/users/sign-in");
   } catch (err) {
     console.error("Error:", err);
     return res.status(500).send("Internal Server Error");

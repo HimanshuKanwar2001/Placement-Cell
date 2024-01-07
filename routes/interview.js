@@ -10,6 +10,8 @@ router.post('/create',interviewController.create);
 router.get("/destroy/:interviewId", interviewController.destroy);
 router.post("/update/:interviewId",interviewController.update);
 
+router.get('/exportUser',interviewController.exportUser);
+
 
 
 

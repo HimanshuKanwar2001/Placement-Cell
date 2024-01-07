@@ -50,8 +50,13 @@ module.exports.create = async function (req, res) {
   }
 };
 
-//sing in and create a session for the user
-module.exports.createSession = function (req, res) {
+//sign in and create a session for the user
+module.exports.createSession = async function (req, res) {
+  // const user= await User.findOne({email:req.body.email});
+  // if(  req.body.email==user.email || req.body.password==req.body.password)
+  // if(!user){
+  //   return res.redirect('/users/sign-up');
+  // }
   return res.redirect("/");
 };
 

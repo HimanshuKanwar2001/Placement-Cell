@@ -4,13 +4,17 @@ const Interview=require('../models/interview');
 
 module.exports.home = async function (req, res) {
   try {
-    const students = await Student.find({});
-    const allStudents = await Student.find({}).populate("interviews");
-    console.log(allStudents);
-    res.render("home", {
-      title: "Students Data",
-      allStudents: allStudents,
-    });
+    if(req.isAuthenticated()){
+        const students = await Student.find({});
+        const allStudents = await Student.find({}).populate("interviews");
+        console.log(allStudents);
+       return  res.render("home", {
+          title: "Students Data",
+          allStudents: allStudents,
+        });
+    }
+    
+    return res.redirect("/users/sign-in");
   } catch (err) {
     console.error("Error:", err);
     return res.status(500).send("Internal Server Error");

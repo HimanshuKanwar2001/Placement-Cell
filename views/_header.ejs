@@ -1,4 +1,6 @@
-<header>
+<% if(locals.user){ %>
+
+  <header>
   <div class="header-div">
     <p id="header-heading">Placement Cell</p>
     <ul class="pages-links">
@@ -13,6 +15,11 @@
       </li>
       <li>
         <a href="/company/add-company">Company</a>
+      </li>
+      <li>
+        <a href="/interview/exportUser">Download
+          <small>.csv</small>
+        </a>
       </li>
     </ul>
     <ul class="sign-data">
@@ -36,3 +43,6 @@
     </ul>
   </div>
 </header>
+
+<% } %>
+
