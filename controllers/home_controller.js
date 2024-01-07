@@ -1,33 +1,27 @@
-const Student=require('../models/student');
-const Interview=require('../models/interview');
+const Student = require("../models/student");
+const Interview = require("../models/interview");
 
-
+// Controller to render the home page with students data
 module.exports.home = async function (req, res) {
   try {
-    if(req.isAuthenticated()){
-        const students = await Student.find({});
-        const allStudents = await Student.find({}).populate("interviews");
-        console.log(allStudents);
-       return  res.render("home", {
-          title: "Students Data",
-          allStudents: allStudents,
-        });
+    // Check if the user is authenticated
+    if (req.isAuthenticated()) {
+      // Fetch all students and populate their interview details
+      const students = await Student.find({});
+      const allStudents = await Student.find({}).populate("interviews");
+      console.log(allStudents);
+
+      // Render the home page with students data
+      return res.render("home", {
+        title: "Students Data",
+        allStudents: allStudents,
+      });
     }
-    
+
+    // Redirect to sign-in page if not authenticated
     return res.redirect("/users/sign-in");
   } catch (err) {
     console.error("Error:", err);
     return res.status(500).send("Internal Server Error");
   }
 };
-
-// module.exports.showDetails=async function(req,res){
-//   try {
-//     const studentId = req.params.studentId.slice(1);
-//     const student = await Student.findById(studentId).populate("interviews").exec();
-//     console.log("Student",student.interviews);
-//   } catch (err) {
-//     console.error("Error:", err);
-//     return res.status(500).send("Internal Server Error");
-//   }
-// }

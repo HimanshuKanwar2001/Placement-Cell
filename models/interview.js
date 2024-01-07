@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 
+// Define the interview schema
 const interviewSchema = new mongoose.Schema(
   {
     studentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Student",
     },
-    studentBatch:{
-      type:String,
-      required:true,
+    studentBatch: {
+      type: String,
+      required: true,
     },
     studentName: {
       type: String,
@@ -34,10 +35,12 @@ const interviewSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Automatically adds createdAt and updatedAt fields
   }
 );
 
+// Create the Interview model based on the interviewSchema
 const Interview = mongoose.model("Interview", interviewSchema);
 
+// Export the Interview model
 module.exports = Interview;

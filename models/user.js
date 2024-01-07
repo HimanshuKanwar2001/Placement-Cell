@@ -1,25 +1,29 @@
-const mongoose=require('mongoose');
+const mongoose = require("mongoose");
 
-
-const userSchema=new mongoose.Schema({
-    email:{
-        type:String,
-        require:true,
-        unique:true,
-
+// Define the user schema
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    password:{
-        type:String,
-        require:true
+    password: {
+      type: String,
+      required: true,
     },
-    name:{
-        type:String,
-        require:true,
-    }
-},{
-    timestamps:true
-});
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true, // Automatically adds createdAt and updatedAt fields
+  }
+);
 
-const User=mongoose.model('User',userSchema);
+// Create the User model based on the userSchema
+const User = mongoose.model("User", userSchema);
 
-module.exports=User;
+// Export the User model
+module.exports = User;

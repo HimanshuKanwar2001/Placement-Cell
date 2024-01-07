@@ -1,47 +1,55 @@
 const User = require("../models/user");
 
+// Controller to render the user profile page
 module.exports.profile = function (req, res) {
   return res.render("user_profile", {
     title: "Profile Page",
   });
 };
 
-//render Sign Up page
+// Controller to render the Sign Up page
 module.exports.signUp = function (req, res) {
-
+  // Redirect to profile if already authenticated
   if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
   }
+
   return res.render("user_sign_up", {
     title: "Placement Cell | Sign Up",
   });
 };
 
-//render Sign In page
+// Controller to render the Sign In page
 module.exports.signIn = function (req, res) {
-
+  // Redirect to profile if already authenticated
   if (req.isAuthenticated()) {
     return res.redirect("/users/profile");
   }
+
   return res.render("user_sign_in", {
     title: "Placement Cell | Sign In",
   });
 };
 
-//get the sign up data
+// Controller to handle user sign up
 module.exports.create = async function (req, res) {
+  // Check if password and confirm_password match
   if (req.body.password != req.body.confirm_password) {
     return res.redirect("back");
   }
+
   try {
+    // Check if user with the given email already exists
     const user = await User.findOne({ email: req.body.email });
 
     console.log("Is User Present ", user);
 
     if (!user) {
+      // Create a new user and redirect to Sign In page
       const newUser = await User.create(req.body);
       return res.redirect("/users/sign-in");
     } else {
+      // Redirect back if user already exists
       return res.redirect("back");
     }
   } catch (err) {
@@ -50,22 +58,20 @@ module.exports.create = async function (req, res) {
   }
 };
 
-//sign in and create a session for the user
+// Controller to handle user sign in and create a session
 module.exports.createSession = async function (req, res) {
-  // const user= await User.findOne({email:req.body.email});
-  // if(  req.body.email==user.email || req.body.password==req.body.password)
-  // if(!user){
-  //   return res.redirect('/users/sign-up');
-  // }
+  // Redirect to home page after successful sign-in
   return res.redirect("/");
 };
 
-module.exports.destroySession=function(req,res){
-    req.logout((err)=>{
-      if(err){
-        return res.status(500).send("Error logging out");
-      }
-    });
+// Controller to destroy the user session (logout)
+module.exports.destroySession = function (req, res) {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).send("Error logging out");
+    }
+  });
 
-    return res.redirect('/');
-}
+  // Redirect to home page after logout
+  return res.redirect("/");
+};

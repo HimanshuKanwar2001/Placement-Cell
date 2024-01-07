@@ -3,7 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const User = require("../models/user");
 
-//authentication using passport
+// Authentication using passport
 passport.use(
   new LocalStrategy(
     {
@@ -11,8 +11,7 @@ passport.use(
     },
     async function (email, password, done) {
       try {
-
-        //find a user and establish the identity
+        // Find a user and establish the identity
         const user = await User.findOne({ email: email });
         if (!user || user.password != password) {
           console.log("Invalid Username/Password");
@@ -27,12 +26,12 @@ passport.use(
   )
 );
 
-//serializing the user to decide which key is to be kept in the cookies
+// Serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function (user, done) {
   return done(null, user.id);
 });
 
-//deserializing the user from the key in the cookies
+// Deserializing the user from the key in the cookies
 passport.deserializeUser(async function (id, done) {
   try {
     const user = await User.findById(id);
@@ -43,20 +42,22 @@ passport.deserializeUser(async function (id, done) {
   }
 });
 
-// /check if the user is authenticated
+// Check if the user is authenticated
 passport.checkAuthentication = function (req, res, next) {
-  // if the user is signed in,then pass on the request to the next function(controller's action)
+  // If the user is signed in, then pass on the request to the next function(controller's action)
   if (req.isAuthenticated()) {
     return next();
   }
 
-  //if the user is not signed in
+  // If the user is not signed in, redirect to the sign-in page
   return res.redirect("/users/sign-in");
 };
 
+// Set authenticated user to locals for views
 passport.setAuthenticatedUser = function (req, res, next) {
   if (req.isAuthenticated()) {
-    //req.user contains the current signed in  user from the session cookie and we are just sending this to the locals for the views
+    // req.user contains the current signed-in user from the session cookie,
+    // and we are just sending this to the locals for the views
     res.locals.user = req.user;
   }
   next();

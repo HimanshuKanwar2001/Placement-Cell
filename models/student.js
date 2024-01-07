@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Define the student schema
 const studentSchema = new mongoose.Schema(
   {
     email: {
@@ -43,9 +44,12 @@ const studentSchema = new mongoose.Schema(
     ],
   },
   {
-    timestamps: true,
+    timestamps: true, // Automatically adds createdAt and updatedAt fields
   }
 );
 
+// Create the Student model based on the studentSchema
 const Student = mongoose.model("Student", studentSchema);
+
+// Export the Student model
 module.exports = Student;
