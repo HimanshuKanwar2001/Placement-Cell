@@ -14,7 +14,7 @@ module.exports.companyPage = async function (req, res) {
 
       // Render the company page with student results
       return res.render("company", {
-        title: "Student Results",
+        title: "Add Company",
         all_company: company,
       });
     }

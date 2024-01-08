@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const homeController = require("../controllers/home_controller");
 
+
 // Route to render the home page
-router.get("/", homeController.home);
+router.get("/", passport.checkAuthentication, homeController.home);
 
 // Users routes
 router.use("/users", require("./users"));

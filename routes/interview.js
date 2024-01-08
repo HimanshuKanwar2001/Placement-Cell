@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
-
+const passport = require("passport");
 const interviewController = require("../controllers/interviews_controller");
 
+
 // Route to render the "Add Interview" form
-router.get("/add-interview", interviewController.addInterview);
+router.get(
+  "/add-interview",
+  passport.checkAuthentication,
+  interviewController.addInterview
+);
 
 // Route to handle the creation of a new interview
 router.post("/create", interviewController.create);

@@ -24,9 +24,10 @@ module.exports.addStudent = async function (req, res) {
 module.exports.create = async function (req, res) {
   try {
     // Check if a student with the given email already exists
-    const student = await Student.findOne({ email: req.body.email });
+    // const student = await Student.findOne({ email: req.body.email });
+    // console.log("create Student", student);
 
-    if (!student) {
+    // if (!student) {
       // Create a new student if not found
       await Student.create({
         email: req.body.email,
@@ -38,7 +39,7 @@ module.exports.create = async function (req, res) {
         webdev_score: req.body.webdev_score,
         react_score: req.body.react_score,
       });
-    }
+    // }
 
     // Redirect back
     return res.redirect("back");
