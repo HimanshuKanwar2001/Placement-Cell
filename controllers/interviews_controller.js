@@ -115,7 +115,7 @@ module.exports.update = async function (req, res) {
 
     // Update the interview status
     const interview = await Interview.findByIdAndUpdate(interviewId, {
-      $set: { status: status },
+      $set: { status: status ,},
     });
 
     // Redirect back
